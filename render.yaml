@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: yern-app
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    branch: main
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_NAME
+        value: Yern
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        fromService:
+          type: web
+          name: yern-app
+          property: host
+      - key: AUTO_VERIFY_EMAIL
+        value: "true"
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: yern-db
+          property: connectionString
+      - key: SESSION_DRIVER
+        value: database
+
+databases:
+  - name: yern-db
+    plan: free
+    databaseName: yern
+    user: yern

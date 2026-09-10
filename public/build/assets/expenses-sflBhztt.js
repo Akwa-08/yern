@@ -1,0 +1,1 @@
+function e(e,t=`PHP`){let n=typeof e==`string`?Number.parseFloat(e):e;try{return n.toLocaleString(`en-PH`,{style:`currency`,currency:t})}catch{return`${t} ${n.toFixed(2)}`}}var t=[`January`,`February`,`March`,`April`,`May`,`June`,`July`,`August`,`September`,`October`,`November`,`December`];export{t as n,e as t};
